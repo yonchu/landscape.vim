@@ -1,4 +1,6 @@
 " landscape.vim
+" terminal colorcheme : aereal/magica-colors
+
 
 " === Setup {{{
 highlight clear
@@ -9,6 +11,10 @@ endif
 let colors_name = 'landscape'
 
 set background=dark
+
+augroup MyLandscapeAu
+  autocmd!
+augroup END
 " }}}
 
 " === Utilities {{{
@@ -58,11 +64,15 @@ function! s:newmatch()
 endfunction
 " }}}
 
-call s:h('Normal',   {'fg': {'gui': '#dddddd'}, 'bg': {'gui': 'grey0'}})
+" String/Statement/Type/PreProc
+"
+" Number/Identifier/Operator/Special
+
+call s:h('Normal',   {'fg': {'gui': '#dddddd'}, 'bg': {'cterm': 'black', 'gui': 'grey0'}})
 
 call s:h('Comment',  {'fg': {'cterm': '243', 'gui': '#767676'}})
 call s:h('Constant', {'fg': {'cterm': '111', 'gui': '#87afff'}})
-call s:h('String',   {'fg': {'cterm': '215', 'gui': '#ffaf5f'}})
+call s:h('String',   {'fg': {'cterm': '209', 'gui': '#ffaf5f'}})
 call s:h('Character',{'fg': {'cterm': '214', 'gui': '#ffaf00'}})
 call s:h('Number',   {'fg': {'cterm': '81' , 'gui': '#5fdfff'}})
 call s:h('Boolean',  {'fg': {'cterm': '227', 'gui': '#ffff5f'}})
@@ -71,7 +81,7 @@ call s:h('Float',    {'fg': {'cterm': '85' , 'gui': '#5fffaf'}})
 call s:h('Identifier', {'fg': {'cterm': '117', 'gui': '#87dfff'}})
 call s:h('Function'  , {'fg': {'cterm': '123', 'gui': '#5fffff'}})
 
-call s:h('Statement', {'fg': {'cterm': '76' , 'gui': '#5fdf00'}})
+call s:h('Statement', {'fg': {'cterm': '77' , 'gui': '#5fdf00'}})
 highlight default link Repeat Statement
 highlight default link Label Statement
 highlight default link Keyword Statement
@@ -80,13 +90,13 @@ highlight default link Exception Statement
 call s:h('Operator'   , {'fg': {'cterm': '220', 'gui': '#ffdf00'}})
 call s:h('Conditional', {'fg': {'cterm': '166', 'gui': '#ef7f00'}})
 
-call s:h('PreProc'  , {'fg': {'cterm': '39', 'gui': '#00afff'}})
+call s:h('PreProc'  , {'fg': {'cterm': '32', 'gui': '#00afff'}})
 call s:h('Include'  , {'fg': {'cterm': '38', 'gui': '#00afdf'}})
 call s:h('Define'   , {'fg': {'cterm': '37', 'gui': '#00afaf'}})
 call s:h('Macro'    , {'fg': {'cterm': '36', 'gui': '#00af87'}})
 call s:h('PreCondit', {'fg': {'cterm': '35', 'gui': '#00af5f'}})
 
-call s:h('Type'        , {'fg': {'cterm': '207', 'gui': '#ff9fff'}})
+call s:h('Type'        , {'fg': {'cterm': '177', 'gui': '#ff9fff'}})
 call s:h('StorageClass', {'fg': {'cterm': '201', 'gui': '#ff7fff'}})
 call s:h('Structure'   , {'fg': {'cterm': '200', 'gui': '#ff7fdf'}})
 call s:h('Typedef'     , {'fg': {'cterm': '199', 'gui': '#ff7faf'}})
@@ -105,7 +115,7 @@ call s:h('TabLineFill', {'fg': {'cterm': '253', 'gui': '#dadada'}, 'cterm': 'bol
 call s:h('Visual', {'bg': {'cterm': '241', 'gui': '#606060'}})
 highlight default link VisualNOS Visual
 
-call s:h('Underlined', {'fg': {'cterm': '45', 'gui': '#00dfff'}, 'term': 'underline', 'gui': 'underline'})
+call s:h('Underlined', {'fg': {'cterm': '45', 'gui': '#00dfff'}, 'cterm': 'underline', 'gui': 'underline'})
 highlight default link URL Underlined
 
 call s:h('Error'     , {'fg': {'cterm': '15', 'gui': '#ffffff'}, 'bg': {'cterm': '124', 'gui': '#af0000'}})
@@ -127,23 +137,33 @@ highlight default link FullSpace Error
 
 call s:h('VertSplit', {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': '185', 'gui': 'darkgray'}})
 
-call s:h('Folded'    , {'fg': {'cterm': '247', 'gui': '#9e9e9e'}, 'bg': {'cterm': '235', 'gui': '#262626'}})
-call s:h('FoldColumn', {'fg': {'cterm': '247', 'gui': '#9e9e9e'}, 'bg': {'cterm': '235', 'gui': '#262626'}})
-call s:h('SignColumn', {'fg': {'cterm': '247', 'gui': '#9e9e9e'}, 'bg': {'cterm': '235', 'gui': '#262626'}})
+call s:h('Folded'    , {'fg': {'cterm': 'darkred', 'gui': '#9e9e9e'}, 'bg': {'cterm': '233', 'gui': '#262626'},
+      \ 'cterm': 'bold', 'gui': 'underline'})
+call s:h('FoldColumn', {'fg': {'cterm': 'white'  , 'gui': '#9e9e9e'}, 'bg': {'cterm': '233', 'gui': '#262626'}})
+call s:h('SignColumn', {'fg': {'cterm': '247'    , 'gui': '#9e9e9e'}, 'bg': {'cterm': '235', 'gui': '#262626'}})
 
-call s:h('SpecialKey', {'fg': {'cterm': 'darkgray', 'gui': 'darkgray'}, 'term': 'underline'})
+call s:h('SpecialKey', {'fg': {'cterm': 'darkgray', 'gui': 'darkgray'}, 'cterm': 'underline'})
 call s:h('NonText'   , {'fg': {'cterm': 'black'   , 'gui': 'black'}})
 
 call s:h('StatusLineNC', {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': 'darkgray', 'gui': 'darkgray'}})
 
 if version >= 700
   call s:h('CursorLine'  , {'bg': {'cterm': '235', 'gui': '#262626'}})
-  call s:h('ColorColumn' , {'bg': {'cterm': '239', 'gui': '#4e4e4e'}})
+  call s:h('ColorColumn' , {'bg': {'cterm': '232', 'gui': '#4e4e4e'}})
   call s:h('CursorColumn', {'bg': {'cterm': '235', 'gui': '#262626'}})
 
+  autocmd MyLandscapeAu InsertLeave *
+        \ highlight CursorLine   ctermbg=235 |
+        \ highlight CursorLineNr ctermbg=235
+  autocmd MyLandscapeAu InsertEnter *
+        \ highlight CursorLine   ctermbg=18 |
+        \ highlight CursorLineNr ctermbg=18
+
   call s:h('LineNr'      , {'fg': {'cterm': '58' , 'gui': '#5f5f00'}, 'bg': {'gui': 'bg'}})
-  call s:h('CursorLineNr', {'fg': {'cterm': '148', 'gui': '#afdf00'}, 'bg': {'cterm': '235', 'gui': '#262626'}, 'term': 'underline', 'cterm': 'bold', 'gui': 'bold'})
-  call s:h('MatchParen', {'bg': {'cterm': '237', 'gui': '#3a3a3a'}})
+  call s:h('CursorLineNr', {'fg': {'cterm': '148', 'gui': '#afdf00'}, 'bg': {'cterm': '235', 'gui': '#262626'},
+        \ 'term': 'underline', 'cterm': 'bold', 'gui': 'bold'})
+
+  call s:h('MatchParen', {'bg': {'cterm': '52', 'gui': '#3a3a3a'}})
 
   call s:h('Pmenu'     , {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': 'gray', 'gui': 'gray'}})
   call s:h('PmenuSel'  , {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': 'darkgray', 'gui': 'darkgray'}})
@@ -186,10 +206,29 @@ highlight default link Marked StorageClass
 highlight default link Title Identifier
 " }}}
 
-augroup MatchAdd
-  autocmd!
-  autocmd BufCreate,BufNew,WinEnter * call <SID>newmatch()
-augroup END
+" === Other Plugins {{{
+" indent-guides.vim
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray  ctermbg=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=236
+
+" vim-hier
+call s:h('qf_error_ucurl'  , {'cterm': 'undercurl', 'sp': {'gui': 'red'}})
+call s:h('qf_warning_ucurl', {'cterm': 'undercurl', 'sp': {'gui': 'blue'}})
+
+" Showmarks
+call s:h('ShowMarksHLl', {'fg': {'cterm': 'blue', 'gui': 'blue'}, 'bg': {'cterm': 'black', 'gui': 'black'}})
+call s:h('ShowMarksHLu', {'fg': {'cterm': 'blue', 'gui': 'blue'}, 'bg': {'cterm': 'lightyellow', 'gui': 'black'}})
+call s:h('ShowMarksHLo', {'fg': {'cterm': 'blue', 'gui': 'blue'}, 'bg': {'cterm': 'black', 'gui': 'black'}})
+call s:h('ShowMarksHLm', {'fg': {'cterm': 'blue', 'gui': 'blue'}, 'bg': {'cterm': 'black', 'gui': 'black'}, 'cterm': 'bold', 'gui': 'bold'})
+
+" MiniBufExpl
+highlight def link MBEChanged               MBENormal
+highlight def link MBEVisibleChanged        MBEVisibleNormal
+highlight def link MBEVisibleChangedActive  MBEVisibleActive
+" }}}
+
+
+autocmd MyLandscapeAu BufRead * call <SID>newmatch()
 
 " Conceal
 " Cursor
