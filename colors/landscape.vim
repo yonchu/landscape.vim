@@ -1,98 +1,35 @@
-set background=dark
-highlight clear
+" landscape.vim
 
-let colors_name = "landscape"
-if exists("syntax_on")
+" === Setup {{{
+highlight clear
+if exists('syntax_on')
   syntax reset
 endif
 
-highlight Normal gui=none guifg=#dddddd guibg=grey0
-highlight Comment term=none ctermfg=243 ctermbg=none gui=none guifg=#767676
-highlight Constant term=none ctermfg=111 gui=none guifg=#87afff
-highlight String term=none ctermfg=215 ctermbg=none gui=none guifg=#ffaf5f
-highlight Character term=none ctermfg=214 ctermbg=none gui=none guifg=#ffaf00
-highlight Number term=none ctermfg=81 ctermbg=none gui=none guifg=#5fdfff
-highlight Boolean term=none ctermfg=227 ctermbg=none gui=none guifg=#ffff5f
-highlight Float term=none ctermfg=85 ctermbg=none gui=none guifg=#5fffaf
+let colors_name = 'landscape'
 
-highlight Identifier term=none cterm=none ctermfg=117 ctermbg=none gui=none guifg=#87dfff
-highlight Function term=none ctermfg=123 ctermbg=none gui=none guifg=#5fffff
+set background=dark
+" }}}
 
-highlight Statement term=none ctermfg=76 ctermbg=none gui=none guifg=#5fdf00
-highlight Conditional term=none ctermfg=166 ctermbg=none gui=none guifg=#ef7f00
-highlight default link Repeat Statement
-highlight default link Label Statement
-highlight Operator term=none ctermfg=220 ctermbg=none gui=none guifg=#ffdf00
-highlight default link Keyword Statement
-highlight default link Exception Statement
+" === Utilities {{{
+" http://noahfrederick.com/vim-color-scheme-hemisu/
+function! s:h(group, style)
+  execute 'highlight' a:group
+      \ 'term='    (has_key(a:style, 'term')  ? a:style.term  : 'NONE')
+      \ 'gui='     (has_key(a:style, 'gui')   ? a:style.gui   : 'NONE')
+      \ 'cterm='   (has_key(a:style, 'cterm') ? a:style.cterm : 'NONE')
+      \ 'guifg='   (has_key(a:style, 'fg')    ? (has_key(a:style.fg, 'gui')   ? a:style.fg.gui   : 'NONE') : 'NONE')
+      \ 'guibg='   (has_key(a:style, 'bg')    ? (has_key(a:style.bg, 'gui')   ? a:style.bg.gui   : 'NONE') : 'NONE')
+      \ 'guisp='   (has_key(a:style, 'sp')    ? (has_key(a:style.sp, 'gui')   ? a:style.sp.gui   : 'NONE') : 'NONE')
+      \ 'ctermfg=' (has_key(a:style, 'fg')    ? (has_key(a:style.fg, 'cterm') ? a:style.fg.cterm : 'NONE') : 'NONE')
+      \ 'ctermbg=' (has_key(a:style, 'bg')    ? (has_key(a:style.bg, 'cterm') ? a:style.bg.cterm : 'NONE') : 'NONE')
+endfunction
 
-highlight PreProc term=none ctermfg=39 gui=none guifg=#00afff
-highlight Include term=none ctermfg=38 gui=none guifg=#00afdf
-highlight Define term=none ctermfg=37 gui=none guifg=#00afaf
-highlight Macro term=none ctermfg=36 gui=none guifg=#00af87
-highlight PreCondit term=none ctermfg=35 gui=none guifg=#00af5f
-
-highlight Type term=none ctermfg=207 ctermbg=none gui=none guifg=#ff9fff
-highlight StorageClass term=none ctermfg=201 ctermbg=none gui=none guifg=#ff7fff
-highlight Structure term=none ctermfg=200 ctermbg=none gui=none guifg=#ff7fdf
-highlight Typedef term=none ctermfg=199 ctermbg=none gui=none guifg=#ff7faf
-
-highlight Special term=none ctermfg=178 gui=none guifg=orange
-highlight SpecialChar term=none ctermfg=208 gui=none guifg=orange
-highlight Tag term=none ctermfg=180 gui=none guifg=orange
-highlight Delimiter term=none ctermfg=181 gui=none guifg=orange
-highlight SpecialComment term=none ctermfg=182 gui=none guifg=violet
-highlight Debug term=none ctermfg=183 gui=none guifg=violet
-
-highlight TabLine ctermfg=253 ctermbg=241 guifg=#dadada guibg=#606060
-highlight TabLineFill ctermfg=253 ctermbg=241 guifg=#dadada guibg=#606060
-highlight TabLineSel cterm=bold ctermfg=253 guifg=#dadada 
-highlight Visual term=none ctermbg=241 guibg=#606060
-highlight default link VisualNOS Visual
-highlight Underlined term=underline ctermfg=45 gui=underline guifg=#00dfff
-highlight default link URL Underlined
-highlight Error term=none ctermfg=15 ctermbg=124 gui=none guifg=#ffffff guibg=#af0000
-highlight WarningMsg term=none ctermfg=7 ctermbg=0 gui=none guifg=#c0c0c0 guibg=#000000
-highlight Todo term=none ctermfg=16 ctermbg=185 gui=none guifg=#000000 guibg=#dfdf5f
-highlight DiffAdd term=none cterm=none ctermfg=none ctermbg=22 guifg=fg guibg=#005f00
-highlight DiffChange term=none cterm=none ctermfg=none ctermbg=52 guifg=fg guibg=#5f0000
-highlight DiffDelete term=none cterm=none ctermfg=none ctermbg=88 guifg=fg guibg=#870000
-highlight DiffText term=none cterm=none ctermfg=none ctermbg=160 guifg=fg guibg=#df0000
-highlight DiffFile term=none cterm=none ctermfg=47 ctermbg=none guifg=#00ff5f guibg=bg
-highlight DiffNewFile term=none cterm=none ctermfg=199 ctermbg=none guifg=#ff00af guibg=bg
-highlight default link DiffRemoved DiffDelete
-highlight DiffLine term=none cterm=none ctermfg=129 ctermbg=none guifg=#af00ff guibg=bg
-highlight default link DiffAdded DiffAdd
-highlight default link ErrorMsg Error
-highlight default link FullSpace Error
-highlight Ignore ctermbg=none gui=none guifg=bg
-
-highlight VertSplit term=none gui=none guifg=black guibg=darkgray gui=none ctermfg=black ctermbg=darkgray cterm=none
-highlight Folded term=none ctermfg=247 ctermbg=235 guifg=#9e9e9e guibg=#262626
-highlight FoldColumn term=none ctermfg=247 ctermbg=235 guifg=#9e9e9e guibg=#262626
-highlight SignColumn term=none ctermfg=247 ctermbg=235 guifg=#9e9e9e guibg=#262626
-highlight SpecialKey term=underline ctermfg=darkgray gui=none guifg=darkgray
-highlight NonText term=none ctermfg=black gui=none guifg=black
-highlight StatusLineNC term=none gui=none guifg=black guibg=darkgray gui=none ctermfg=black ctermbg=darkgray cterm=none gui=none
-if version >= 700
-  highlight CursorLine term=none cterm=none ctermbg=235 gui=none guibg=#262626
-  highlight ColorColumn term=none cterm=none ctermbg=239 gui=none guibg=#4e4e4e
-  highlight CursorColumn term=none cterm=none ctermbg=235 gui=none guibg=#262626
-  highlight LineNr term=none ctermfg=58 ctermbg=none guifg=#5f5f00 guibg=bg
-  highlight CursorLineNr term=underline cterm=bold ctermfg=148 ctermbg=235 gui=bold guifg=#afdf00 guibg=#262626
-  highlight MatchParen ctermfg=none ctermbg=237 guibg=#3a3a3a
-  highlight Pmenu ctermfg=black ctermbg=gray gui=none guifg=black guibg=gray
-  highlight PmenuSel ctermfg=black ctermbg=darkgray gui=none guifg=black guibg=darkgray
-  highlight PmenuSbar ctermfg=white ctermbg=darkgray gui=none guifg=white guibg=darkgray
-  highlight PmenuThumb ctermfg=white ctermbg=darkgray gui=none guifg=white guibg=darkgray
-endif
-highlight Search cterm=none ctermfg=234 ctermbg=220 gui=none guifg=#1c1c1c guibg=#ffdf00
-highlight IncSearch cterm=none ctermfg=236 ctermbg=136 gui=none guifg=#303030 guibg=#af8700
 function! s:newmatch()
   if g:landscape_highlight_url ||
    \ g:landscape_highlight_todo ||
    \ g:landscape_highlight_full_space
-    if exists("b:landscape_match")
+    if exists('b:landscape_match')
       for m in getmatches()
         if m.group == 'URL' ||
          \ m.group == 'Todo' ||
@@ -119,19 +56,112 @@ function! s:newmatch()
     let b:landscape_match = 1
   endif
 endfunction
-augroup MatchAdd
-  autocmd!
-  autocmd BufCreate,BufNew,WinEnter * call s:newmatch()
-augroup END
+" }}}
 
-highlight SpellBad term=none cterm=none ctermbg=52 gui=none guibg=#5f0000
+call s:h('Normal',   {'fg': {'gui': '#dddddd'}, 'bg': {'gui': 'grey0'}})
+
+call s:h('Comment',  {'fg': {'cterm': '243', 'gui': '#767676'}})
+call s:h('Constant', {'fg': {'cterm': '111', 'gui': '#87afff'}})
+call s:h('String',   {'fg': {'cterm': '215', 'gui': '#ffaf5f'}})
+call s:h('Character',{'fg': {'cterm': '214', 'gui': '#ffaf00'}})
+call s:h('Number',   {'fg': {'cterm': '81' , 'gui': '#5fdfff'}})
+call s:h('Boolean',  {'fg': {'cterm': '227', 'gui': '#ffff5f'}})
+call s:h('Float',    {'fg': {'cterm': '85' , 'gui': '#5fffaf'}})
+
+call s:h('Identifier', {'fg': {'cterm': '117', 'gui': '#87dfff'}})
+call s:h('Function'  , {'fg': {'cterm': '123', 'gui': '#5fffff'}})
+
+call s:h('Statement', {'fg': {'cterm': '76' , 'gui': '#5fdf00'}})
+highlight default link Repeat Statement
+highlight default link Label Statement
+highlight default link Keyword Statement
+highlight default link Exception Statement
+
+call s:h('Operator'   , {'fg': {'cterm': '220', 'gui': '#ffdf00'}})
+call s:h('Conditional', {'fg': {'cterm': '166', 'gui': '#ef7f00'}})
+
+call s:h('PreProc'  , {'fg': {'cterm': '39', 'gui': '#00afff'}})
+call s:h('Include'  , {'fg': {'cterm': '38', 'gui': '#00afdf'}})
+call s:h('Define'   , {'fg': {'cterm': '37', 'gui': '#00afaf'}})
+call s:h('Macro'    , {'fg': {'cterm': '36', 'gui': '#00af87'}})
+call s:h('PreCondit', {'fg': {'cterm': '35', 'gui': '#00af5f'}})
+
+call s:h('Type'        , {'fg': {'cterm': '207', 'gui': '#ff9fff'}})
+call s:h('StorageClass', {'fg': {'cterm': '201', 'gui': '#ff7fff'}})
+call s:h('Structure'   , {'fg': {'cterm': '200', 'gui': '#ff7fdf'}})
+call s:h('Typedef'     , {'fg': {'cterm': '199', 'gui': '#ff7faf'}})
+
+call s:h('Special'       , {'fg': {'cterm': '178', 'gui': 'orange'}})
+call s:h('SpecialChar'   , {'fg': {'cterm': '208', 'gui': 'orange'}})
+call s:h('Tag'           , {'fg': {'cterm': '180', 'gui': 'orange'}})
+call s:h('Delimiter'     , {'fg': {'cterm': '181', 'gui': 'orange'}})
+call s:h('SpecialComment', {'fg': {'cterm': '182', 'gui': 'violet'}})
+call s:h('Debug'         , {'fg': {'cterm': '183', 'gui': 'violet'}})
+
+call s:h('TabLine'    , {'fg': {'cterm': '253', 'gui': '#dadada'}, 'bg': {'cterm': '241', 'gui': '#606060'}})
+call s:h('TabLineFill', {'fg': {'cterm': '253', 'gui': '#dadada'}, 'bg': {'cterm': '241', 'gui': '#606060'}})
+call s:h('TabLineFill', {'fg': {'cterm': '253', 'gui': '#dadada'}, 'cterm': 'bold'})
+
+call s:h('Visual', {'bg': {'cterm': '241', 'gui': '#606060'}})
+highlight default link VisualNOS Visual
+
+call s:h('Underlined', {'fg': {'cterm': '45', 'gui': '#00dfff'}, 'term': 'underline', 'gui': 'underline'})
+highlight default link URL Underlined
+
+call s:h('Error'     , {'fg': {'cterm': '15', 'gui': '#ffffff'}, 'bg': {'cterm': '124', 'gui': '#af0000'}})
+call s:h('WarningMsg', {'fg': {'cterm': '7' , 'gui': '#c0c0c0'}, 'bg': {'cterm': '0'  , 'gui': '#000000'}})
+call s:h('Todo'      , {'fg': {'cterm': '16', 'gui': '#000000'}, 'bg': {'cterm': '185', 'gui': '#dfdf5f'}})
+
+call s:h('DiffAdd'    , {'fg': {'gui': 'fg'}, 'bg': {'cterm': '22' , 'gui': '#005f00'}})
+call s:h('DiffChange' , {'fg': {'gui': 'fg'}, 'bg': {'cterm': '52' , 'gui': '#5f0000'}})
+call s:h('DiffDelete' , {'fg': {'gui': 'fg'}, 'bg': {'cterm': '88' , 'gui': '#870000'}})
+call s:h('DiffText'   , {'fg': {'gui': 'fg'}, 'bg': {'cterm': '160', 'gui': '#df0000'}})
+call s:h('DiffFile'   , {'fg': {'cterm': '47' , 'gui': '#00ff5f'}, 'bg': {'gui': 'bg'}})
+call s:h('DiffNewFile', {'fg': {'cterm': '199', 'gui': '#ff00af'}, 'bg': {'gui': 'bg'}})
+call s:h('DiffLine'   , {'fg': {'cterm': '129', 'gui': '#af00ff'}, 'bg': {'gui': 'bg'}})
+call s:h('Ignore'     , {'fg': {'gui': 'bg'}})
+highlight default link DiffRemoved DiffDelete
+highlight default link DiffAdded DiffAdd
+highlight default link ErrorMsg Error
+highlight default link FullSpace Error
+
+call s:h('VertSplit', {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': '185', 'gui': 'darkgray'}})
+
+call s:h('Folded'    , {'fg': {'cterm': '247', 'gui': '#9e9e9e'}, 'bg': {'cterm': '235', 'gui': '#262626'}})
+call s:h('FoldColumn', {'fg': {'cterm': '247', 'gui': '#9e9e9e'}, 'bg': {'cterm': '235', 'gui': '#262626'}})
+call s:h('SignColumn', {'fg': {'cterm': '247', 'gui': '#9e9e9e'}, 'bg': {'cterm': '235', 'gui': '#262626'}})
+
+call s:h('SpecialKey', {'fg': {'cterm': 'darkgray', 'gui': 'darkgray'}, 'term': 'underline'})
+call s:h('NonText'   , {'fg': {'cterm': 'black'   , 'gui': 'black'}})
+
+call s:h('StatusLineNC', {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': 'darkgray', 'gui': 'darkgray'}})
+
+if version >= 700
+  call s:h('CursorLine'  , {'bg': {'cterm': '235', 'gui': '#262626'}})
+  call s:h('ColorColumn' , {'bg': {'cterm': '239', 'gui': '#4e4e4e'}})
+  call s:h('CursorColumn', {'bg': {'cterm': '235', 'gui': '#262626'}})
+
+  call s:h('LineNr'      , {'fg': {'cterm': '58' , 'gui': '#5f5f00'}, 'bg': {'gui': 'bg'}})
+  call s:h('CursorLineNr', {'fg': {'cterm': '148', 'gui': '#afdf00'}, 'bg': {'cterm': '235', 'gui': '#262626'}, 'term': 'underline', 'cterm': 'bold', 'gui': 'bold'})
+  call s:h('MatchParen', {'bg': {'cterm': '237', 'gui': '#3a3a3a'}})
+
+  call s:h('Pmenu'     , {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': 'gray', 'gui': 'gray'}})
+  call s:h('PmenuSel'  , {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': 'darkgray', 'gui': 'darkgray'}})
+  call s:h('PmenuSbar' , {'fg': {'cterm': 'white', 'gui': 'white'}, 'bg': {'cterm': 'darkgray', 'gui': 'darkgray'}})
+  call s:h('PmenuThumb', {'fg': {'cterm': 'white', 'gui': 'white'}, 'bg': {'cterm': 'darkgray', 'gui': 'darkgray'}})
+endif
+
+call s:h('Search'   , {'fg': {'cterm': '234', 'gui': '#1c1c1c'}, 'bg': {'cterm': '220', 'gui': '#ffdf00'}})
+call s:h('IncSearch', {'fg': {'cterm': '236', 'gui': '#303030'}, 'bg': {'cterm': '136', 'gui': '#af8700'}})
+
+call s:h('SpellBad', {'bg': {'cterm': '52', 'gui': '#5f0000'}})
 highlight default link SpellCap SpellBad
 highlight default link SpellLocal SpellBad
 highlight default link SpellRare SpellBad
 
 highlight default link vimCmplxRepeat Normal
 
-" for vimshell, vimfiler, unite.vim
+" === vimshell, vimfiler, unite.vim {{{
 highlight default link Command Function
 highlight default link GitCommand Constant
 highlight default link Arguments Type
@@ -145,14 +175,21 @@ highlight default link Link Constant
 highlight default link Exe Statement
 highlight default link Prompt Identifier
 highlight default link Icon LineNr
-highlight Time ctermfg=141 ctermbg=none gui=none guifg=#af87ff
-highlight Date ctermfg=140 ctermbg=none gui=none guifg=#af87df
+
+call s:h('Time', {'bg': {'cterm': '141', 'gui': '#af87ff'}})
+call s:h('Date', {'bg': {'cterm': '140', 'gui': '#af87df'}})
 highlight default link DateToday Special
 highlight default link DateWeek Identifier
 highlight default link DateOld Comment
 highlight default link Path Preproc
 highlight default link Marked StorageClass
 highlight default link Title Identifier
+" }}}
+
+augroup MatchAdd
+  autocmd!
+  autocmd BufCreate,BufNew,WinEnter * call <SID>newmatch()
+augroup END
 
 " Conceal
 " Cursor
