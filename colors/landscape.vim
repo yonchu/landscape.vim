@@ -135,7 +135,7 @@ highlight default link DiffAdded DiffAdd
 highlight default link ErrorMsg Error
 highlight default link FullSpace Error
 
-call s:h('VertSplit', {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': '185', 'gui': 'darkgray'}})
+call s:h('VertSplit', {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': '59', 'gui': 'darkgray'}})
 
 call s:h('Folded'    , {'fg': {'cterm': 'darkred', 'gui': '#9e9e9e'}, 'bg': {'cterm': '233', 'gui': '#262626'},
       \ 'cterm': 'bold', 'gui': 'underline'})
