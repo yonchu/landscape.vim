@@ -208,8 +208,8 @@ highlight default link Title Identifier
 
 " === Other Plugins {{{
 " indent-guides.vim
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray  ctermbg=0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=236
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=gray  ctermbg=12
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=239
 
 " vim-hier
 call s:h('qf_error_ucurl'  , {'cterm': 'undercurl', 'sp': {'gui': 'red'}})
