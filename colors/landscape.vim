@@ -120,7 +120,7 @@ highlight default link URL Underlined
 
 call s:h('Error'     , {'fg': {'cterm': '15', 'gui': '#ffffff'}, 'bg': {'cterm': '124', 'gui': '#af0000'}})
 call s:h('WarningMsg', {'fg': {'cterm': '7' , 'gui': '#c0c0c0'}, 'bg': {'cterm': '0'  , 'gui': '#000000'}})
-call s:h('Todo'      , {'fg': {'cterm': '16', 'gui': '#000000'}, 'bg': {'cterm': '185', 'gui': '#dfdf5f'}})
+call s:h('Todo'      , {'fg': {'cterm': '185', 'gui': '#dfdf5f'}, 'bg': {'cterm': '16', 'gui': '#000000'}, 'cterm': 'reverse', 'gui': 'reverse'})
 
 call s:h('DiffAdd'    , {'fg': {'gui': 'fg'}, 'bg': {'cterm': '22' , 'gui': '#005f00'}})
 call s:h('DiffChange' , {'fg': {'gui': 'fg'}, 'bg': {'cterm': '52' , 'gui': '#5f0000'}})
@@ -163,7 +163,7 @@ if version >= 700
   call s:h('CursorLineNr', {'fg': {'cterm': '148', 'gui': '#afdf00'}, 'bg': {'cterm': '235', 'gui': '#262626'},
         \ 'term': 'underline', 'cterm': 'bold', 'gui': 'bold'})
 
-  call s:h('MatchParen', {'bg': {'cterm': '52', 'gui': '#3a3a3a'}})
+  call s:h('MatchParen', {'bg': {'cterm': '52', 'gui': '#585858'}})
 
   call s:h('Pmenu'     , {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': 'gray', 'gui': 'gray'}})
   call s:h('PmenuSel'  , {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': 'darkgray', 'gui': 'darkgray'}})
@@ -171,8 +171,8 @@ if version >= 700
   call s:h('PmenuThumb', {'fg': {'cterm': 'white', 'gui': 'white'}, 'bg': {'cterm': 'darkgray', 'gui': 'darkgray'}})
 endif
 
-call s:h('Search'   , {'fg': {'cterm': '234', 'gui': '#1c1c1c'}, 'bg': {'cterm': '220', 'gui': '#ffdf00'}})
-call s:h('IncSearch', {'fg': {'cterm': '236', 'gui': '#303030'}, 'bg': {'cterm': '136', 'gui': '#af8700'}})
+call s:h('Search'   , {'fg': {'cterm': '220', 'gui': '#ffdf00'}, 'bg': {'cterm': '234', 'gui': '#1c1c1c'}, 'cterm': 'reverse', 'gui': 'reverse'})
+call s:h('IncSearch', {'fg': {'cterm': '136', 'gui': '#af8700'}, 'bg': {'cterm': '236', 'gui': '#303030'}, 'cterm': 'reverse', 'gui': 'reverse'})
 
 call s:h('SpellBad', {'bg': {'cterm': '52', 'gui': '#5f0000'}})
 highlight default link SpellCap SpellBad

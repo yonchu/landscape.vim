@@ -21,21 +21,16 @@ highlight default link uniteErrorHidden Ignore
 syntax match uniteSourcePrompt /^Sources/ contained nextgroup=uniteSeparator
 syntax match uniteSeparator /:/ contained nextgroup=uniteSourceNames
 syntax match uniteSourceNames / [[:alnum:]_\/-]\+/ contained nextgroup=uniteSourceArgs,uniteCommand
-syntax match uniteMessage /^\[.\{-}\].*$/ contains=uniteMessageSource,uniteNumber,uniteGitCommand,uniteBundleName
-syntax match uniteMessageSource /^\[.\{-}\]/ contained
 syntax match uniteSourceArgs /:\S\+/ contained
 highlight default link uniteSourcePrompt Prompt
 highlight default link uniteSeparator NONE
-highlight default link uniteSourceNames Constant
-highlight default link uniteMessage NONE
-highlight default link uniteMessageSource Constant
 highlight default link uniteSourceArgs Function
 
 " git
-syntax match uniteGitCommand /git \S\+ -\S\+/ contained contains=uniteGit,uniteGitArg
+syntax match uniteGitCommand /git \S\+ -\S\+/ contained contains=uniteGit,uniteGitArg containedin=uniteSource__NeoBundleInstall_Progress
 syntax match uniteGitArg /\-\S\+/ contained
 syntax match uniteGit /git/ contained
-syntax match uniteBundleName /|\@<=\S\+|\@=/ contained
+syntax match uniteBundleName /|\@<=\S\+|\@=/ contained containedin=uniteSource__NeoBundleInstall_Source
 highlight default link uniteGitCommand GitCommand
 highlight default link uniteGitArg Arguments
 highlight default link uniteGit Command
@@ -60,6 +55,7 @@ syntax region uniteTypeMultimedia start='.' end='\.\(
       \.rmvb\|rpm\|smi\|mkv\|mid\|wav\|ogg\|wma\|au\|flac\)\>\(\s\s\)\@=' oneline contained containedin=uniteFile contains=uniteCandidateInputKeyword,unitePath 
 syntax region uniteTypeSystem start='.' end='\.\(o\|hi\|inf\|sys\|reg\|dat\|spi\|a\|so\|lib\|dll\|log\)\>\(\s\s\)\@=' oneline contained containedin=uniteFile contains=uniteCandidateInputKeyword,unitePath 
 syntax match uniteTypeSystem '\(#\S\+#\|configure[\s$]\|aclocal\.m4\|[Mm]akefile\(\.in\)\?\|stamp-h1\|config\.\(h\(\.in\~\?\)\?\|status\)\|output\.[0-9]\S\?\|requests\|traces\.[0-9]\S\?\)\s\@=' contained containedin=uniteFile contains=uniteCandidateInputKeyword,unitePath 
+syntax match uniteTypeSystem '\(y\.tab\.c\|y\.output\|lex\.yy\.c\|y\.tab\.h\)\s\@=' contained containedin=uniteFile contains=uniteCandidateInputKeyword,unitePath 
 syntax match uniteNewFile '\[new file\]' contained containedin=uniteFile contains=uniteCandidateInputKeyword
 highlight default link unitePath Path
 highlight default link unitePdfHtml PdfHtml
@@ -74,7 +70,7 @@ syntax region uniteMarkedLine start=/^\*/ end='$' keepend
 syntax region uniteNonMarkedLine start=/^- / end='$' keepend contains=uniteCandidateMarker,uniteCandidateSourceName,uniteCandidateAbbr
 syntax match uniteCandidateMarker /^- / contained
 syntax match uniteQuickMatchTrigger /^.|/ contained
-syntax match uniteNumber '\<\d\+\>' contained containedin=uniteStatusLine
+syntax match uniteNumber '\<\d\+\>' contained containedin=uniteStatusLine,uniteSource__NeoBundleInstall_Progress
 syntax match uniteLineNumber '\(^- *+\? *\)\@<=\<\d\+\>' contained containedin=uniteSource__Line
 highlight default link uniteNumber Number
 highlight default link uniteLineNumber LineNr
@@ -94,6 +90,13 @@ highlight default link uniteSpecial Special
 highlight default link uniteCommand Command
 highlight default link uniteArguments Arguments
 
+" neobundle/update
+syntax match uniteMessage /^- *\[.\{-}\].*$/ contains=uniteMessageSource,uniteNumber,uniteGitCommand,uniteBundleName
+syntax match uniteMessageSource /^- *\[.\{-}\]/ contained
+highlight default link uniteSourceNames Constant
+highlight default link uniteMessage NONE
+highlight default link uniteMessageSource Constant
+
 highlight default link uniteChooseAction NONE
 highlight default link uniteChooseCandidate NONE
 highlight default link uniteChooseKey SpecialKey
@@ -102,6 +105,8 @@ highlight default link uniteChoosePrompt uniteSourcePrompt
 highlight default link uniteChooseSource uniteSourceNames
 highlight default link uniteSource__FileMru_Time Date
 highlight default link uniteSource__Buffer_Time Time
+highlight default link uniteSource__NeoBundleInstall_Progress Normal
+highlight default link uniteSource__NeoBundleInstall_Source Normal
 highlight default link uniteInputPrompt Prompt
 highlight default link uniteInputPromptError Error
 highlight default link uniteInputSpecial Special
