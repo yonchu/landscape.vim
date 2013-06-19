@@ -1,6 +1,10 @@
 " landscape.vim
 " terminal colorcheme : aereal/magica-colors
 
+if get(g:, 'landscape_disable_colors', 1)
+  finish
+endif
+
 
 " === Setup {{{
 highlight clear
