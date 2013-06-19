@@ -1,7 +1,7 @@
 " landscape.vim
 " terminal colorcheme : aereal/magica-colors
 
-if get(g:, 'landscape_disable_colors', 1)
+if get(g:, 'landscape_disable_colors', 0)
   finish
 endif
 
@@ -145,6 +145,9 @@ call s:h('DiffFile'   , {'fg': {'cterm': '47' , 'gui': '#00ff5f'}, 'bg': {'gui':
 call s:h('DiffNewFile', {'fg': {'cterm': '199', 'gui': '#ff00af'}, 'bg': {'gui': 'bg'}})
 call s:h('DiffLine'   , {'fg': {'cterm': '129', 'gui': '#af00ff'}, 'bg': {'gui': 'bg'}})
 call s:h('Ignore'     , {'fg': {'gui': 'bg'}})
+call s:h('ModeMsg'    , {'fg': {'gui': 'bg'}, 'bg': {'gui': 'bg'},
+      \ 'term': 'bold', 'cterm': 'bold', 'gui': 'bold'})
+highlight ModeMsg ctermfg=none guifg=bg guibg=bg
 highlight default link DiffRemoved DiffDelete
 highlight default link DiffAdded DiffAdd
 highlight default link ErrorMsg Error
@@ -180,10 +183,10 @@ if version >= 700
 
   call s:h('MatchParen', {'bg': {'cterm': '52', 'gui': '#585858'}})
 
-  call s:h('Pmenu'     , {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': 'gray', 'gui': 'gray'}})
-  call s:h('PmenuSel'  , {'fg': {'cterm': 'black', 'gui': 'black'}, 'bg': {'cterm': 'darkgray', 'gui': 'darkgray'}})
-  call s:h('PmenuSbar' , {'fg': {'cterm': 'white', 'gui': 'white'}, 'bg': {'cterm': 'darkgray', 'gui': 'darkgray'}})
-  call s:h('PmenuThumb', {'fg': {'cterm': 'white', 'gui': 'white'}, 'bg': {'cterm': 'darkgray', 'gui': 'darkgray'}})
+  call s:h('Pmenu'     , {'fg': {'cterm': '233', 'gui': '#121212'}, 'bg': {'cterm': '249', 'gui': '#b2b2b2'}})
+  call s:h('PmenuSel'  , {'fg': {'cterm': '233', 'gui': '#121212'}, 'bg': {'cterm': '242', 'gui': '#666666'}})
+  call s:h('PmenuSbar' , {'fg': {'cterm': '233', 'gui': '#121212'}, 'bg': {'cterm': '244', 'gui': '#808080'}})
+  call s:h('PmenuThumb', {'fg': {'cterm': '233', 'gui': '#121212'}, 'bg': {'cterm': '239', 'gui': '#4e4e4e'}})
 endif
 
 call s:h('Search'   , {'fg': {'cterm': '220', 'gui': '#ffdf00'}, 'bg': {'cterm': '234', 'gui': '#1c1c1c'}, 'cterm': 'reverse', 'gui': 'reverse'})
