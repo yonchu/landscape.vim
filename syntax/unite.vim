@@ -27,9 +27,11 @@ highlight default link uniteSeparator NONE
 highlight default link uniteSourceArgs Function
 
 " git
-syntax match uniteGitCommand /git \S\+ -\S\+/ contained contains=uniteGit,uniteGitArg containedin=uniteSource__NeoBundleInstall_Progress
+syntax match uniteGitCommand /git .*/ contained contains=uniteGit,uniteGitArg,uniteSpecial,uniteCommand containedin=uniteSource__NeoBundleInstall_Progress
 syntax match uniteGitArg /\-\S\+/ contained
 syntax match uniteGit /git/ contained
+syntax match uniteSpecial '[|<>;&]' contained
+syntax match uniteCommand '[|;&]\s*\f\+' contains=uniteSpecial contained
 syntax match uniteBundleName /|\@<=\S\+|\@=/ contained containedin=uniteSource__NeoBundleInstall_Source
 highlight default link uniteGitCommand GitCommand
 highlight default link uniteGitArg Arguments
@@ -56,7 +58,7 @@ syntax region uniteTypeMultimedia start='.' end='\.\(
 syntax region uniteTypeSystem start='.' end='\.\(o\|hi\|inf\|sys\|reg\|dat\|spi\|a\|so\|lib\|dll\|log\)\>\(\s\s\)\@=' oneline contained containedin=uniteFile contains=uniteCandidateInputKeyword,unitePath 
 syntax match uniteTypeSystem '\(#\S\+#\|configure[\s$]\|aclocal\.m4\|[Mm]akefile\(\.in\)\?\|stamp-h1\|config\.\(h\(\.in\~\?\)\?\|status\)\|output\.[0-9]\S\?\|requests\|traces\.[0-9]\S\?\)\s\@=' contained containedin=uniteFile contains=uniteCandidateInputKeyword,unitePath 
 syntax match uniteTypeSystem '\(y\.tab\.c\|y\.output\|lex\.yy\.c\|y\.tab\.h\)\s\@=' contained containedin=uniteFile contains=uniteCandidateInputKeyword,unitePath 
-syntax match uniteNewFile '\[new file\]' contained containedin=uniteFile contains=uniteCandidateInputKeyword
+syntax match uniteNewFile '\[new \(file\|directory\)\]' contained containedin=uniteFile contains=uniteCandidateInputKeyword
 highlight default link unitePath Path
 highlight default link unitePdfHtml PdfHtml
 highlight default link uniteArchive Archive

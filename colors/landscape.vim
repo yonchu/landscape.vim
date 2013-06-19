@@ -36,10 +36,12 @@ function! s:h(group, style)
 endfunction
 
 function! s:newmatch()
+  try
   if g:landscape_highlight_url ||
    \ g:landscape_highlight_todo ||
-   \ g:landscape_highlight_full_space
-    if exists('b:landscape_match')
+   \ g:landscape_highlight_full_space ||
+   \ g:landscape_highlight_url_filetype != {}
+    if exists("b:landscape_match")
       for m in getmatches()
         if m.group == 'URL' ||
          \ m.group == 'Todo' ||
@@ -48,7 +50,9 @@ function! s:newmatch()
         endif
       endfor
     endif
-    if g:landscape_highlight_url
+    if g:landscape_highlight_url &&
+          \ (!has_key(g:landscape_highlight_url_filetype, &l:filetype) ||
+          \ g:landscape_highlight_url_filetype[&l:filetype])
       call matchadd('URL',
             \'\(https\?\|ftp\|git\):\/\/\('
             \.'[&:#*@~%_\-=?/.0-9A-Za-z]*'
@@ -65,7 +69,14 @@ function! s:newmatch()
     endif
     let b:landscape_match = 1
   endif
+  catch
+  endtry
 endfunction
+
+augroup MatchAdd
+  autocmd!
+  autocmd BufCreate,BufNew,WinEnter,FileType * call s:newmatch()
+augroup END
 " }}}
 
 " String/Statement/Type/PreProc
